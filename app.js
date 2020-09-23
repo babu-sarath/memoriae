@@ -13,6 +13,8 @@ const connectDB = require('./config/db')
 //load config
 dotenv.config({ path: './config/config.env' })
 
+const man = "asd"
+
 //passport config
 require('./config/passport')(passport)
 
