@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col">
+        <div class="my-3">
+            <h5>Dashboard</h5>
+        </div>
+        <h4>Greetings <strong>{{name}}</strong></h4>
+        <p>Here are the list of your memories with us...</p>
+        <hr>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        {{#if stories}}
+        <table class="table table-hover table-borderless">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each stories}}
+                    <tr>
+                        <td scope="row"><a href="/stories/{{_id}}">{{title}}</a></td>
+                        <td>{{status}}</td>
+                        <td>{{formatDate createdAt ' Do MMMM YYYY, h:mm a'}}</td>
+                        <td class="row">
+                            <a href="/stories/edit/{{_id}}" class="btn text-info"><i class="fas fa-edit"></i></a>
+                            
+                            <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn text-danger"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+            {{else}}
+            <div class=" my-5 py-5">
+                <h1><strong>You have no stories</strong></h1>
+            </div>
+                
+            {{/if}}
+        </table>
+    </div>
+</div>

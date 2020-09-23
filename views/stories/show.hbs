@@ -1,0 +1,30 @@
+<div class="row pb-5 mb-5">
+    <div class="col-md-8">
+        <h3 class="post-title my-4">{{story.title}}</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5>{{{editIcon story.user user story._id}}}</h5>
+                <h5 class="card-title">{{formatDate date 'Do MMMM YYYY, h:mm a'}}</h5>
+                <hr>
+                <p class="card-text">
+                    {{{story.body}}}
+                </p>
+            </div>
+        </div>
+        {{{isSameUser story.user user story}}}
+        <div></div>
+        
+    </div>
+
+    <div class="col-md-4">
+        <h3 class="my-4">.....</h3>
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">{{story.user.displayName}}</h5>
+                <img src="{{story.user.image}}" class="profile-img">
+                <hr>
+                <a href="/stories/user/{{story.user._id}}" class="card-link btn-sm ">Read More from {{story.user.displayName}}</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+    <img class="vector-img" src="../img/reg-vector-img.svg">
+    <div class="col-md-4 px-5 pt-5 ml-auto mr-5">
+    <h2 class="my-5 mx-3"><i class="fas fa-blog fa-rotate-270"></i> <strong>Register</strong></h2>
+        <form class="pr-5 mr-4" action="/users/register" method="POST">
+            
+            <div class="form-group mt-4 mx-3">
+                <input type="name" class="form-control text-input" id="name" name="name" placeholder="Enter Name" required>
+            </div>
+            <div class="form-group mx-3">
+                <input type="email" class="form-control text-input" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group mx-3">
+                <input type="password" class="form-control text-input" id="password" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group mx-3">
+                <input type="password" class="form-control text-input" id="password2"  name="password2" placeholder="Confirm Password" required>
+            </div>
+            <div class="form-group mx-3">
+                <input type="text" placeholder="Enter your DP url" class="form-control text-input" id="image"  name="image">
+            </div>
+
+            <div class="col text-center">
+                <button type="submit" class="btn btn-warning btn-login my-4"><strong><i class="fas fa-user-plus mr-2"></i>Register</strong></button>
+                <a href="/" class="btn">
+                    <small class="text-muted">Already have an account? <strong>Login</strong></small>
+                </a>
+            </div>
+            
+        </form>
+    </div>
+</div>

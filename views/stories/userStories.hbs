@@ -1,0 +1,30 @@
+
+<div class="row pt-4 pb-5 mb-5 px-3">
+    {{#uname}}
+    <div class="row my-4">
+        <img src="{{image}}" class="img-small">
+        <h1 class="my-auto mx-4 ">More Stories from <strong>{{displayName}}</strong></h1>
+    </div>
+
+    {{/uname}}
+    <div class="row">
+
+        {{#each stories}}
+        <div class="col-12">
+            <div class="card text-left card-height my-2">
+                <div class="card-body">
+                    <h5 class="user-stories-title">{{stripTags (truncate title)}}</h5>
+                    <p class="card-text py-3">{{stripTags (truncate body 500)}}</p>
+                    <hr>
+                    <a href="/stories/{{_id}}" class="btn btn-secondary btn-sm">Read More</a>
+                    {{{editIcon user ../user _id}}}
+                </div>
+            </div>
+        </div>
+
+        {{else}}
+            <h3><strong>No memories available</strong></h3>
+        {{/each}}
+
+    </div>
+</div>

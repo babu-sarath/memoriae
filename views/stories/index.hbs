@@ -1,0 +1,71 @@
+{{!-- news banner --}}
+<div style="background-color: #373B3C;" class="row">
+    <marquee behavior="scroll" direction="left" class="mb-1">
+        <span class="text-purple mx-5 px-5">Greetings dear User! Have a great time reading</span>
+        {{#each news}}
+        <span class="text-purple mx-5 px-5">{{newsUpdate}}</span>
+        {{else}}
+        <span class="text-purple mx-5 px-5"><strong>No news updates today!</strong></span>
+        {{/each}}
+    </marquee>
+</div>
+
+{{!-- main content --}}
+<h2 class="my-5">All of our Stories</h2>
+<hr>
+<h5 class="text-danger"><i class="fas fa-fire"></i><strong> Trending Stories</strong></h5>
+
+<div class="row">
+    <div class="col-md-8 main-right-line">
+        {{#each stories}}
+        <div class="col ">
+            <div class="text-left my-4">
+                <div class="card-body">
+                    <h1 class="post-title">{{stripTags (truncate title)}}</h1>
+                    <h5 class="mt-4"><i class="fas fa-calendar-day"></i> {{formatDate date 'Do MMMM YYYY'}}</h5>
+                    <p class="card-text text-justify py-4">{{stripTags (truncate body 500)}}</p>
+                    <div class="">
+                        <a class="text-success" href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+                    </div>
+                    
+                    <a href="/stories/{{_id}}" class="btn btn-secondary btn-sm my-3">Read More</a>
+                    {{{editIcon user ../user _id}}}
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <h3><strong>No memories available</strong></h3>
+        {{/each}}
+
+    </div>
+    <div class="col-md-4">
+        <div class="col">
+            <img class="img-fluid mb-4" src="https://www.bootstrapdash.com/wp-content/uploads/2017/10/How-to-Create-an-Admin-Panel-with-a-Bootstrap-Template.jpg">
+            <h4>Message from <strong>Memoriae</strong></h4>
+            <div class="text-justify">
+                <p>Hey There! Welcome to Memoriae. Use this online platform to share your interesting stories and ideas with people in this community</p>
+                <p>Make sure you post content that is good to be read by other users and not blaming users. If found, will be banned from posting content on this platform.</p>
+            </div>
+            
+        </div>
+
+        <div class="col my-5">
+            <h4>Quick Search</h4>
+            <form class="form-inline">
+                <input class="form-control mr-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="col my-5">
+            <h4>Users of Memoriae</h4>
+            <div class="text-justify user-img-box">
+                {{#each users}}
+                <a href="/stories/user/{{_id}}"><img src="{{image}}" style="width: 60px; height: 60px;"></a>
+                {{/each}}
+            </div>
+            
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,23 @@
+body {
+    background: url('../img/register-bg.svg') no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.text-input {
+    border-radius: 0;
+}
+
+.vector-img {
+    position: absolute;
+    padding-left: 5%;
+    top: 10%;
+
+}
+
+.btn-login {
+    width: 250px;
+}
+.btn {
+    border-radius: 0;
+}

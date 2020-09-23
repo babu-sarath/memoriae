@@ -1,0 +1,121 @@
+body {
+    background-color: #F6F6F6;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-start {
+    color: white;
+    background-color: green;
+}
+
+.logoText {
+    color: #373B3C;
+    cursor: pointer;
+}
+
+.adminlogoText {
+    color: #e4e4e4;
+    cursor: pointer;
+}
+
+.nav-item {
+    padding: 0 20px;
+}
+
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.img-small {
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid #FFC107;
+}
+
+.btn-login {
+    width: 250px;
+}
+
+.admin-link {
+    font-size: 12px;
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 5px solid #343A40;
+}
+
+.text-main {
+    color: #373B3C;
+}
+
+.post-title {
+    font-size: 30pt;
+    /* color: #0e97c5; */
+    color: #754DAD;
+
+    font-weight: 700;
+}
+
+.main-right-line {
+    border-right: 1px solid #d8d8d8;
+}
+
+.user-img-box {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #d8d8d8;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 250px;
+    right: 40px;
+    background-color: #0C9;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.my-float {
+    margin-top: 22px;
+}
+
+.user-stories-title {
+    /* color: #0e97c5; */
+    color: #754DAD;
+    font-weight: 600;
+    font-size: 20pt;
+}
+
+.login-bg {
+    background: url('/public/img/mainbg.png');
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.adminhead {
+    border-bottom: 10px solid #754DAD;
+}
+
+.admindash-header {
+    font-size: 35;
+    font-weight: 500;
+}
+
+.admindash-number {
+    font-size: 100;
+    font-weight: 700;
+}
+
+.text-purple {
+    color: #b589f1;
+}
