@@ -1,121 +1,191 @@
 body {
-    background-color: #F6F6F6;
+	background-color: #f6f6f6;
 }
 
 .btn {
-    border-radius: 0;
+	border-radius: 0;
 }
 
 .btn-start {
-    color: white;
-    background-color: green;
+	color: white;
+	background-color: green;
 }
 
 .logoText {
-    color: #373B3C;
-    cursor: pointer;
+	color: #373b3c;
+	cursor: pointer;
 }
 
 .adminlogoText {
-    color: #e4e4e4;
-    cursor: pointer;
+	color: #e4e4e4;
+	cursor: pointer;
 }
 
 .nav-item {
-    padding: 0 20px;
+	padding: 0 20px;
 }
 
 .profile-img {
-    width: 150px;
-    border-radius: 50%;
+	width: 150px;
+	border-radius: 50%;
 }
 
 .img-small {
-    width: 100px;
-    border-radius: 50%;
-    border: 3px solid #FFC107;
+	width: 100px;
+	border-radius: 50%;
+	border: 3px solid #ffc107;
 }
 
 .btn-login {
-    width: 250px;
+	width: 250px;
 }
 
 .admin-link {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .header {
-    background-color: #ffffff;
-    border-bottom: 5px solid #343A40;
+	background-color: #ffffff;
+	border-bottom: 5px solid #343a40;
 }
 
 .text-main {
-    color: #373B3C;
+	color: #373b3c;
 }
 
 .post-title {
-    font-size: 30pt;
-    /* color: #0e97c5; */
-    color: #754DAD;
+	font-size: 30pt;
+	/* color: #0e97c5; */
+	color: #754dad;
 
-    font-weight: 700;
+	font-weight: 700;
 }
 
 .main-right-line {
-    border-right: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
 }
 
 .user-img-box {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #d8d8d8;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #d8d8d8;
 }
 
 .float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 250px;
-    right: 40px;
-    background-color: #0C9;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 250px;
+	right: 40px;
+	background-color: #0c9;
+	color: #fff;
+	border-radius: 50px;
+	text-align: center;
 }
 
 .my-float {
-    margin-top: 22px;
+	margin-top: 22px;
 }
 
 .user-stories-title {
-    /* color: #0e97c5; */
-    color: #754DAD;
-    font-weight: 600;
-    font-size: 20pt;
+	/* color: #0e97c5; */
+	color: #754dad;
+	font-weight: 600;
+	font-size: 20pt;
 }
 
 .login-bg {
-    background: url('/public/img/mainbg.png');
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
+	background: url('/public/img/mainbg.png');
+	background-size: cover;
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
 }
 
 .adminhead {
-    border-bottom: 10px solid #754DAD;
+	border-bottom: 10px solid #754dad;
 }
 
 .admindash-header {
-    font-size: 35;
-    font-weight: 500;
+	font-size: 35;
+	font-weight: 500;
 }
 
 .admindash-number {
-    font-size: 100;
-    font-weight: 700;
+	font-size: 100;
+	font-weight: 700;
 }
 
 .text-purple {
-    color: #b589f1;
+	color: #b589f1;
+}
+
+/* errorpage */
+#notfound {
+	position: relative;
+	height: 100vh;
+}
+
+#notfound .notfound {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.notfound {
+	max-width: 410px;
+	width: 100%;
+	text-align: center;
+}
+
+.notfound .notfound-404 {
+	height: 180px;
+	position: relative;
+	z-index: -1;
+}
+
+.notfound .notfound-404 h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 130px;
+	font-weight: 800;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	background: url('/img/bg3.svg') no-repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: cover;
+	background-position: center;
+}
+
+.notfound h2 {
+	font-family: 'Montserrat', sans-serif;
+	color: #000;
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-top: 0;
+}
+
+.notfound p {
+	font-family: 'Montserrat', sans-serif;
+	color: #000;
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 20px;
+	margin-top: 0px;
+}
+
+@media only screen and (max-width: 767px) {
+	.notfound .notfound-404 {
+		height: 142px;
+	}
+	.notfound .notfound-404 h1 {
+		font-size: 112px;
+	}
 }

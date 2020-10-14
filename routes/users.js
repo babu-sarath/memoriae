@@ -28,41 +28,57 @@ router.post('/register', (req, res) => {
 
 	//check passowrds match
 	if (password != password2) {
-		errors.push({ msg: 'Password do not match' })
+		errors.push({
+			msg: 'The passwords entered do no match! Please try again.',
+		})
 	}
 	//check password length
 	if (password.length < 6) {
-		errors.push({ msg: 'Password should be at least 6 characters' })
+		errors.push({
+			msg:
+				'The length of the Password should be at least six characters long! Please try again.',
+		})
 	}
 	if (image == '') {
 		image =
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-16y4LKaxCJWkLi3x8tXLnTLnwKZfkE2l-g&usqp=CAU'
 	}
 	if (errors.length > 0) {
-		res.render('error/passwordError', { layout: 'login' })
-	} else {
-		Users.findOne({ email: email }).then((user) => {
-			if (user) {
-				res.render('error/userExistError', { layout: 'login' })
-			} else {
-				const newUser = new Users({
-					googleId: 'null',
-					displayName: name,
-					email: email,
-					password: bcrypt.hashSync(password2, saltRounds),
-					image: image,
-					usertype: usertype,
-					ban: ban,
-				})
-
-				newUser
-					.save()
-					.then((user) => {
-						res.redirect('/')
-					})
-					.catch((err) => console.log(err))
-			}
+		res.render('error/generalErrors', {
+			layout: 'errors',
+			errors: errors[0],
 		})
+	} else {
+		let uid = Math.floor(
+			100000000000000000000 + Math.random() * 999999999999999999999
+		)
+		const newUser = new Users({
+			userId: uid,
+			displayName: name,
+			email: email,
+			password: bcrypt.hashSync(password2, saltRounds),
+			image: image,
+			usertype: usertype,
+			ban: ban,
+		})
+
+		newUser
+			.save()
+			.then((user) => {
+				res.redirect('/')
+				console.log(user)
+			})
+			.catch((err) => {
+				errors.push({
+					msg:
+						'The email is already registered with Memoriae. If you forgot the password, try the forgot password option.',
+				})
+				res.render('error/generalErrors', {
+					layout: 'login',
+					errors: errors[0],
+				})
+				console.log(err)
+			})
 	}
 })
 
@@ -119,7 +135,7 @@ router.get('/ban/:id', ensureAuth, async (req, res) => {
 		})
 	} catch (err) {
 		console.error(err)
-		res.render('error/500')
+		res.render('error/500', { layout: 'errors' })
 	}
 })
 
@@ -147,7 +163,7 @@ router.get('/unban/:id', ensureAuth, async (req, res) => {
 		})
 	} catch (err) {
 		console.error(err)
-		res.render('error/500')
+		res.render('error/500', { layout: 'errors' })
 	}
 })
 
@@ -169,7 +185,7 @@ router.get('/delete/:id', ensureAuth, async (req, res) => {
 		})
 	} catch (err) {
 		console.error(err)
-		res.render('error/500')
+		res.render('error/500', { layout: 'errors' })
 	}
 })
 

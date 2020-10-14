@@ -15,8 +15,9 @@ module.exports = function (passport) {
 				let ban = 0
 				let usertype = 'user'
 				const newUser = {
-					googleId: profile.id,
+					userId: profile.id,
 					displayName: profile.displayName,
+					email: profile.emails[0].value,
 					image: profile.photos[0].value,
 					usertype: usertype,
 					ban: ban,

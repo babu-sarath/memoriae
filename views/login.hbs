@@ -4,7 +4,7 @@
         <div class="col text-right">
             <a href="/users/register" class="card-link ml-auto mx-4">
                 <small class="admin-link text-muted">
-                  <strong>SignUp.</strong>  
+                    <strong>SignUp.</strong>
                 </small>
             </a>
             <a href="/users/admin" class="card-link ml-auto mx-4">
@@ -12,37 +12,37 @@
                     Admin.
                 </small>
             </a>
-            
+
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-5 my-5 ml-auto text-left">
 
-                <form action="/users/login" class="pl-5 ml-5 mt-4" method="POST">
+            <form action="/users/login" class="pl-5 ml-5 mt-4" method="POST">
+                <h1><i class="fas fa-blog fa-lg fa-rotate-270 pb-1"></i> </h1>
+                <h1><strong>Memoriae.</strong></h1>
 
-                    <h1><i class="fas fa-blog fa-lg fa-rotate-270 pb-1"></i> </h1>
-                    <h1><strong>Memoriae.</strong></h1>
+                <h6 class="mt-5 mb-0"><strong>Welcome Back,</strong> </h6>
+                <h6 class="text-muted">Please login with your account.</h6>
 
-                    <h6 class="mt-5 mb-0"><strong>Welcome Back,</strong> </h6>
-                    <h6 class="text-muted">Please login with your account.</h6>
+                <div class="form-group mt-4">
+                    <input type="email" class="form-control text-input" id="email" name="email"
+                        placeholder="Email address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control text-input" id="password" name="password"
+                        placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-secondary btn-login"><strong>Login</strong></button>
+                </div>
 
-                    <div class="form-group mt-4">
-                        <input type="email" class="form-control text-input" id="email" name="email" placeholder="Email address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control text-input" id="password" name="password" placeholder="Password"  required>
-                    </div>
-                    <div class="form-group">
-                       <button type="submit" class="btn btn-secondary btn-login"><strong>Login</strong></button>
-                    </div>
-                    
-                    <a href="/auth/google" class="btn btn-warning btn-login mt-5">
-                        <i class="fab fa-google pr-2"></i><strong>Login in with Google</strong>
-                    </a>
-                </form>
-                
+                <a href="/auth/google" class="btn btn-warning btn-login mt-5">
+                    <i class="fab fa-google pr-2"></i><strong>Login in with Google</strong>
+                </a>
+            </form>
+
         </div>
     </div>
 </div>
-
