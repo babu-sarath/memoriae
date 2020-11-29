@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 
 const Story = require('../models/Story')
 const Users = require('../models/Users')
+const Reset = require('../models/Reset')
 
 const { ensureAuth } = require('../middlewear/auth')
 const router = express.Router()
@@ -23,30 +24,39 @@ router.post('/register', (req, res) => {
 	let usertype = 'user'
 	let ban = 0
 	let { name, email, password, password2, image } = req.body
-	let errors = []
+	// let errors = []
+	let errors = ''
 	const saltRounds = 10
 
 	//check passowrds match
 	if (password != password2) {
-		errors.push({
-			msg: 'The passwords entered do no match! Please try again.',
-		})
+		// errors.push({
+		// 	msg: 'The passwords entered do no match! Please try again.',
+		// })
+		errors = 'The passwords entered do no match! Please try again.'
 	}
 	//check password length
 	if (password.length < 6) {
-		errors.push({
-			msg:
-				'The length of the Password should be at least six characters long! Please try again.',
-		})
+		// errors.push({
+		// 	msg:
+		// 		'The length of the Password should be at least six characters long! Please try again.',
+		// })
+		errors =
+			'The length of the Password should be at least six characters long! Please try again.'
 	}
 	if (image == '') {
 		image =
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-16y4LKaxCJWkLi3x8tXLnTLnwKZfkE2l-g&usqp=CAU'
 	}
-	if (errors.length > 0) {
-		res.render('error/generalErrors', {
-			layout: 'errors',
-			errors: errors[0],
+	if (errors) {
+		// res.render('error/generalErrors', {
+		// 	layout: 'errors',
+		// 	errors: errors[0],
+		// })
+		res.render('register', {
+			message: errors,
+			messageClass: 'alert-danger alert-dismissible fade show',
+			layout: 'register-vector',
 		})
 	} else {
 		let uid = Math.floor(
@@ -69,13 +79,11 @@ router.post('/register', (req, res) => {
 				console.log(user)
 			})
 			.catch((err) => {
-				errors.push({
-					msg:
+				res.render('register', {
+					message:
 						'The email is already registered with Memoriae. If you forgot the password, try the forgot password option.',
-				})
-				res.render('error/generalErrors', {
-					layout: 'login',
-					errors: errors[0],
+					messageClass: 'alert-danger alert-dismissible fade show',
+					layout: 'register-vector',
 				})
 				console.log(err)
 			})
@@ -84,7 +92,13 @@ router.post('/register', (req, res) => {
 
 //description: login error handle
 router.get('/loginerror', (req, res) => {
-	res.render('error/loginProblem', { layout: 'login' })
+	// res.render('error/loginProblem', { layout: 'login' })
+	res.render('login', {
+		message:
+			'Invalid credentials entered. Please check your email and password and try again',
+		messageClass: 'alert-danger alert-dismissible fade show',
+		layout: 'login-vector',
+	})
 })
 
 //login handle
@@ -109,6 +123,50 @@ router.post('/adminlogin', (req, res, next) => {
 			res.render('admin', { layout: 'login' })
 		}
 	})
+})
+
+//reset passoword handle
+router.get('/passwordReset/:id', (req, res, next) => {
+	let id = req.params.id
+
+	Reset.findOne({ key: id, status: 'Pending' })
+		.then((result) => {
+			if (result) {
+				console.log('Code verified')
+				res.redirect('/users/reset/' + result.email) //calls line number 132
+			} else {
+				console.log('Code invalid')
+			}
+		})
+		.catch((e) => {
+			console.log('Error ', e)
+		})
+})
+router.get('/reset/:id', (req, res) => {
+	let email = req.params.id
+	res.render('reset', { email: email, layout: 'login' })
+})
+router.post('/reset', (req, res) => {
+	const saltRounds = 10
+	let pwd = req.body.password
+	let email = req.body.email
+
+	Users.updateOne(
+		{ email: email },
+		{ password: bcrypt.hashSync(pwd, saltRounds) },
+		function (err, doc) {
+			if (err) console.log(err)
+			else {
+				console.log('updated')
+				res.render('login', {
+					message:
+						'Your password has been reset. Login with your new credetials',
+					messageClass: 'alert-success alert-dismissible fade show',
+					layout: 'login-vector',
+				})
+			}
+		}
+	)
 })
 
 //description: admin ban user

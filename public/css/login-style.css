@@ -1,24 +1,32 @@
 body {
-    background: url('../img/login-bg.svg') no-repeat;
-    background-size: cover;
-    height: 100%;
+	background: url('../img/login-bg.svg') no-repeat;
+	background-size: cover;
+	height: 100%;
 }
 
 .text-input {
-    width: 250px;
-    border-radius: 0;
+	width: 250px;
+	border-radius: 0;
 }
 
 .vector-img {
-    position: absolute;
-    padding-left: 5%;
-    top: 2%;
+	position: absolute;
+	padding-left: 5%;
+	top: 2%;
+}
 
+#message {
+	margin: auto;
+	z-index: 500;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }
 
 .btn-login {
-    width: 250px;
+	width: 250px;
 }
 .btn {
-    border-radius: 0;
+	border-radius: 0;
 }

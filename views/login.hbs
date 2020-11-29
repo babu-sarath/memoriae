@@ -1,5 +1,22 @@
 <img class="vector-img" src="../img/login-vector-main.svg">
 <div class="container-fluid">
+
+    {{#if message}}
+    <div id="message" class="col mx-auto text-center">
+        <div class="alert {{messageClass}}" role="alert">
+            {{#if success}}
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_PAtvr0.json" mode="bounce"
+                background="transparent" speed="1" style="width: 100px; height: 100px;" autoplay class="mx-auto">
+            </lottie-player>
+            {{/if}}
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="row">
         <div class="col text-right">
             <a href="/users/register" class="card-link ml-auto mx-4">
@@ -37,12 +54,53 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-secondary btn-login"><strong>Login</strong></button>
                 </div>
+                <div class="form-group">
+                    <a data-toggle="modal" data-target="#forgotPasswordModal" class="card-link ml-auto mx-4">
+                        <small class="admin-link text-muted" style="cursor: pointer;">
+                            Forgot Password?
+                        </small>
+                    </a>
+                </div>
 
                 <a href="/auth/google" class="btn btn-warning btn-login mt-5">
                     <i class="fab fa-google pr-2"></i><strong>Login in with Google</strong>
                 </a>
             </form>
 
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col text-center">
+                        <p>Please enter your email so we can help you with the instructions to reset your password</p>
+                        <form id="forgotPassword-form" autocomplete="off" class="form" action="/auth/forgotPassword"
+                            method="POST">
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="femail" name="femail" placeholder="Enter your email address"
+                                        class="form-control" type="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input name="recover-submit" class="btn btn-warning btn-block" value="Reset Password"
+                                    type="submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
