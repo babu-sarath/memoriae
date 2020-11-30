@@ -1,10 +1,16 @@
 const express = require('express')
+const Razorpay = require('razorpay')
 const router = express.Router()
 const { ensureAuth } = require('../middlewear/auth')
 
 const Story = require('../models/Story')
 const Users = require('../models/Users')
 const News = require('../models/News')
+const Payment = require('../models/Payments')
+let instance = new Razorpay({
+	key_id: 'rzp_test_3OvTq6T7Wrlbki',
+	key_secret: 'NsB6Ol6Kk6w9M6GyD4NYXGDD',
+})
 
 //description: show add page stuff
 router.get('/add', ensureAuth, (req, res) => {
@@ -190,6 +196,74 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
 	} else {
 		res.render('stories/edit', { story })
 	}
+})
+
+//description: show payment page
+router.get('/payment/:id', ensureAuth, async (req, res) => {
+	let storyUserId = req.params.id
+	let currentUser = req.user.id
+
+	res.render('stories/donation', {
+		paymentFor: storyUserId,
+		layout: 'login',
+	})
+})
+router.post('/donate', (req, res) => {
+	let { to, name, email, phone, comment, amount } = req.body
+	let currentUser = req.user.id
+	amount = amount * 100
+
+	var options = {
+		amount: amount, // amount in the smallest currency unit
+		currency: 'INR',
+		receipt: name,
+	}
+
+	instance.orders
+		.create(options)
+		.then((data) => {
+			res.render('stories/checkout', {
+				data: data,
+				body: req.body,
+				layout: 'login',
+			})
+			// res.send({ data: data })
+		})
+		.catch((error) => {
+			res.send({ sub: error, status: 'failed' })
+		})
+})
+router.post('/checkout', (req, res) => {
+	let {
+		name,
+		email,
+		order_id,
+		amount,
+		to,
+		phone,
+		comment,
+		razorpay_payment_id,
+	} = req.body
+
+	let uid = req.user.id
+	let serviceCharge = (amount * 5) / 100
+	const newRecord = new Payment({
+		paymentId: razorpay_payment_id,
+		donateTo: to,
+		donationFrom: uid,
+		email: email,
+		amount: amount / 100,
+		serviceCharge: serviceCharge,
+	})
+	newRecord
+		.save()
+		.then((stat) => {
+			console.log(stat)
+			res.redirect('/stories/')
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 })
 
 //description: update stories

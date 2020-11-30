@@ -6,9 +6,16 @@ const PaymentScheme = new mongoose.Schema({
 		required: true,
 		index: true,
 	},
-	userId: {
+	donateTo: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
+	},
+	donationFrom: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+	},
+	email: {
+		type: String,
 	},
 	paymentAt: {
 		type: Date,

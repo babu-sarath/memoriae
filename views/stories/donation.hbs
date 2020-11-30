@@ -1,0 +1,48 @@
+<div class="text-center">
+
+	<h1><i class="fas fa-blog fa-2x fa-rotate-270"></i></h1>
+	<h1><strong>Donation</strong></h1>
+
+	{{#if modal}}
+	<input type="hidden" id="to" name="to" value="{{paymentFor}}">
+	{{/if}}
+
+	<form action="/stories/donate" method="POST">
+		{{#if paymentFor}}
+		<input type="hidden" id="to" name="to" value="{{paymentFor}}">
+		{{/if}}
+
+		<div class="form-group mt-4">
+			<input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+		</div>
+		<div class="form-group mt-4">
+			<input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+		</div>
+		<div class="form-group mt-2">
+			<label for="phone">Phone Number (format: xxxxxxxxxx)</label>
+			<input type="tel" pattern="^\d{10}$" class="form-control" id="phone" name="phone"
+				placeholder="Enter phone number " required>
+		</div>
+		<div class="form-group mt-2">
+			<input type="text" class="form-control" id="comment" name="comment" placeholder="Enter comment">
+		</div>
+		<div class="form-group mt-2">
+			<input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount in rupees"
+				required>
+		</div>
+		<div class="form-group mt-2 tex-left">
+			<input type="checkbox" id="tc" name="tc">
+			<label for="tc"> I agree to the <a>terms & conditions</a></label>
+		</div>
+		<div class="col text-center">
+			<a onclick="goBack()" class="btn btn-secondary btn-login"><strong>
+					Take me back
+			</a>
+
+			<button type="submit" class="btn btn-warning btn-login my-3"><strong>
+					<i class="fas fa-donate pr-2"></i><strong>Donate</strong>
+			</button>
+		</div>
+	</form>
+
+</div>

@@ -75,7 +75,12 @@ router.post('/register', (req, res) => {
 		newUser
 			.save()
 			.then((user) => {
-				res.redirect('/')
+				res.render('login', {
+					message:
+						'You have been successfully registered. Login with the credentials you have created.',
+					messageClass: 'alert-success alert-dismissible fade show',
+					layout: 'login-vector',
+				})
 				console.log(user)
 			})
 			.catch((err) => {
