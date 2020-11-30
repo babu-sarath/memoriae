@@ -25,24 +25,26 @@
             </thead>
             <tbody>
                 {{#each stories}}
-                    <tr>
-                        <td><a href="/stories/{{_id}}">{{title}}</a></td>
-                        <td>{{status}}</td>
-                        <td>{{formatDate createdAt ' Do MMMM YYYY, h:mm a'}}</td>
-                        <td>{{ban}}</td>
-                        <td>{{reports}}</td>
-                        <td class="row">
-                            <a href="/stories/ban/{{_id}}" class="btn text-warning"><i class="fas fa-ban"></i></a>
-                            <a href="/stories/unban/{{_id}}" class="btn text-success"><i class="fas fa-check-circle"></i></a>
-                            <a href="/stories/delete/{{_id}}" class="btn text-danger"><i class="fas fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><a href="/stories/{{_id}}">{{title}}</a></td>
+                    <td>{{status}}</td>
+                    <td>{{formatDate createdAt ' Do MMMM YYYY, h:mm a'}}</td>
+                    <td>{{ban}}</td>
+                    <td>{{reports}}</td>
+                    <td class="row">
+                        <a href="/stories/ban/{{_id}}" class="btn text-warning"><i class="fas fa-ban"></i></a>
+                        <a href="/stories/unban/{{_id}}" class="btn text-success"><i
+                                class="fas fa-check-circle"></i></a>
+                        <a href="/stories/delete/{{_id}}" class="btn text-danger"><i class="fas fas fa-trash"></i></a>
+                    </td>
+                </tr>
                 {{/each}}
             </tbody>
             {{else}}
-                <strong>No stories posted</strong>
+            <strong>No stories posted</strong>
             {{/if}}
         </table>
+        <a class="btn btn-warning">Generate Report</a>
     </div>
 </div>
 
@@ -62,21 +64,22 @@
             </thead>
             <tbody>
                 {{#each users}}
-                    <tr>
-                        <td>{{displayName}}</td>
-                        <td>{{formatDate createdAt ' Do MMMM YYYY, h:mm a'}}</td>
-                        <td>{{ban}}</td>
-                        <td class="row">
-                            <a href="/users/ban/{{_id}}" class="btn text-warning"><i class="fas fa-ban"></i></a>
-                            <a href="/users/unban/{{_id}}" class="btn text-success"><i class="fas fa-check-circle"></i></a>
-                            <a href="/users/delete/{{_id}}" class="btn text-danger"><i class="fas fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{displayName}}</td>
+                    <td>{{formatDate createdAt ' Do MMMM YYYY, h:mm a'}}</td>
+                    <td>{{ban}}</td>
+                    <td class="row">
+                        <a href="/users/ban/{{_id}}" class="btn text-warning"><i class="fas fa-ban"></i></a>
+                        <a href="/users/unban/{{_id}}" class="btn text-success"><i class="fas fa-check-circle"></i></a>
+                        <a href="/users/delete/{{_id}}" class="btn text-danger"><i class="fas fas fa-trash"></i></a>
+                    </td>
+                </tr>
                 {{/each}}
             </tbody>
             {{else}}
-                <strong>No users</strong>
+            <strong>No users</strong>
             {{/if}}
         </table>
+        <a class="btn btn-warning">Generate Report</a>
     </div>
 </div>
