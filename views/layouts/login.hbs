@@ -47,6 +47,13 @@
             window.history.back();
         }
 
+        $('#tc').change(function () {
+            if (this.checked) {
+                $('#donateBtn').removeAttr("disabled");
+            } else {
+                $('#donateBtn').prop("disabled", true);
+            }
+        })
     </script>
 </body>
 
