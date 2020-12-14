@@ -31,7 +31,13 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
 //description: admin dashboard page
 router.get('/admindash', ensureAuth, async (req, res) => {
 	try {
-		let storyCount, usersCount
+		let storyCount,
+			usersCount,
+			transactionCount,
+			profit,
+			grossIncome,
+			mostReported,
+			mostLiked
 		await Story.estimatedDocumentCount(
 			{ status: 'public' },
 			(err, result) => {
@@ -43,20 +49,61 @@ router.get('/admindash', ensureAuth, async (req, res) => {
 			}
 		)
 		await Users.estimatedDocumentCount(
-			{ usertype: { $ne: 'admin' } },
+			{ usertype: 'user' },
 			(err, result) => {
 				if (err) {
 					console.log(err)
 				} else {
-					usersCount = result
+					usersCount = result - 1
 				}
 			}
 		)
+		await Payment.estimatedDocumentCount(
+			{ amount: { $ne: 0 } },
+			(err, result) => {
+				if (err) {
+					console.log(err)
+				} else {
+					transactionCount = result
+				}
+			}
+		)
+		await Payment.find({ amount: { $ne: 0 } }, (err, result) => {
+			if (err) {
+				console.log(err)
+			} else {
+				value = result
+				grossIncome = 0
+				for (i = 0; i < value.length; i++)
+					grossIncome += value[i].amount
+			}
+		})
+		await Payment.find({ amount: { $ne: 0 } }, (err, result) => {
+			if (err) {
+				console.log(err)
+			} else {
+				value = result
+				profit = 0
+				for (i = 0; i < value.length; i++) {
+					profit += parseFloat(value[i].serviceCharge)
+				}
+			}
+		})
+		let mostReportedDoc = await Story.find().sort({ reports: -1 }).limit(1)
+		mostReported = mostReportedDoc[0]._id
+
+		let mostLikedDoc = await Story.find().sort({ likes: -1 }).limit(1)
+		mostLiked = mostLikedDoc[0]._id
 
 		res.render('admindash', {
 			layout: 'admin',
 			storyCount,
 			usersCount,
+			transactionCount,
+			grossIncome,
+			profit,
+			mostReported,
+			mostLiked,
 		})
 	} catch (err) {
 		console.error(err)
@@ -73,7 +120,8 @@ router.get('/adminallinfo', ensureAuth, async (req, res) => {
 			layout: 'admin',
 			stories,
 			users,
-			payment,Payment
+			payment,
+			Payment,
 		})
 	} catch (err) {
 		console.error(err)
