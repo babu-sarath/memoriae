@@ -3,6 +3,7 @@ const router = express.Router()
 const { ensureAuth, ensureGuest } = require('../middlewear/auth')
 const Story = require('../models/Story')
 const Users = require('../models/Users')
+const Payment = require('../models/Payments')
 
 //description: login/landing page
 router.get('/', ensureGuest, (req, res) => {
@@ -15,9 +16,11 @@ router.get('/', ensureGuest, (req, res) => {
 router.get('/dashboard', ensureAuth, async (req, res) => {
 	try {
 		const stories = await Story.find({ user: req.user.id }).lean()
+		const payment = await Payment.find({ donationFrom: req.user.id }).lean()
 		res.render('dashboard', {
 			name: req.user.displayName,
 			stories,
+			payment,
 		})
 	} catch (err) {
 		console.error(err)
@@ -65,10 +68,12 @@ router.get('/adminallinfo', ensureAuth, async (req, res) => {
 	try {
 		const stories = await Story.find({ status: 'public' }).lean()
 		const users = await Users.find({ usertype: { $ne: 'admin' } }).lean()
+		const payment = await Payment.find().lean()
 		res.render('adminallinfo', {
 			layout: 'admin',
 			stories,
 			users,
+			payment,Payment
 		})
 	} catch (err) {
 		console.error(err)

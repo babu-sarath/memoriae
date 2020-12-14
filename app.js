@@ -50,6 +50,7 @@ const {
 	select,
 	isSameUser,
 	newsbar,
+	fetchdetail
 } = require('./helpers/hbs')
 
 //Handlebar(the view engine)
@@ -64,6 +65,7 @@ app.engine(
 			select,
 			isSameUser,
 			newsbar,
+			fetchdetail,
 		},
 		defaultLayout: 'main',
 		extname: '.hbs',

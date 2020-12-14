@@ -44,7 +44,7 @@
             <strong>No stories posted</strong>
             {{/if}}
         </table>
-        <a class="btn btn-warning">Generate Report</a>
+        <a id="story-report" class="btn btn-warning">Generate Report</a>
     </div>
 </div>
 
@@ -80,6 +80,133 @@
             <strong>No users</strong>
             {{/if}}
         </table>
-        <a class="btn btn-warning">Generate Report</a>
+        <a id="user-report"class="btn btn-warning">Generate Report</a>
     </div>
 </div>
+
+<div class="row my-4">
+    <div class="col">
+        <h5 class="text-muted">All the Payments</h5>
+        {{#if payment }}
+        <table name="payment-table" class="table table-hover table-borderless" id="admin-payment-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Donate To</th>
+                    <th scope="col">Donation From</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each payment }}
+                <tr>
+                    <td>{{donateToName}}</td>
+                    <td>{{email}}</td>
+                    <td>{{formatDate paymentAt ' Do MMMM YYYY, h:mm a'}}</td>
+                    <td>{{amount}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            {{else}}
+            <strong>No stories posted</strong>
+            {{/if}}
+        </table>
+        <a id="payment-report"class="btn btn-warning">Generate Report</a>
+    </div>
+</div>
+<script>
+    $('#story-report').click((e)=>{
+				let filename=''
+				let downloadLink;
+				let dataType = 'application/vnd.ms-excel';
+				let tableSelect = document.getElementById('admin-story-table');
+				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+				// Specify file name
+				filename = filename?filename+'.xls':'story_data.xls';
+
+				// Create download link element
+				downloadLink = document.createElement("a");
+
+				document.body.appendChild(downloadLink);
+				if(navigator.msSaveOrOpenBlob){
+					var blob = new Blob(['\ufeff', tableHTML], {
+						type: dataType
+					});
+					navigator.msSaveOrOpenBlob( blob, filename);
+				}else{
+					// Create a link to the file
+					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+				
+					// Setting the file name
+					downloadLink.download = filename;
+					
+					//triggering the function
+					downloadLink.click();
+				}
+			})
+</script>
+<script>
+    $('#user-report').click((e)=>{
+				let filename=''
+				let downloadLink;
+				let dataType = 'application/vnd.ms-excel';
+				let tableSelect = document.getElementById('admin-users-table');
+				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+				// Specify file name
+				filename = filename?filename+'.xls':'user_data.xls';
+
+				// Create download link element
+				downloadLink = document.createElement("a");
+
+				document.body.appendChild(downloadLink);
+				if(navigator.msSaveOrOpenBlob){
+					var blob = new Blob(['\ufeff', tableHTML], {
+						type: dataType
+					});
+					navigator.msSaveOrOpenBlob( blob, filename);
+				}else{
+					// Create a link to the file
+					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+				
+					// Setting the file name
+					downloadLink.download = filename;
+					
+					//triggering the function
+					downloadLink.click();
+				}
+			})
+</script>
+<script>
+    $('#payment-report').click((e)=>{
+				let filename=''
+				let downloadLink;
+				let dataType = 'application/vnd.ms-excel';
+				let tableSelect = document.getElementById('admin-payment-table');
+				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+				// Specify file name
+				filename = filename?filename+'.xls':'payment_data.xls';
+
+				// Create download link element
+				downloadLink = document.createElement("a");
+
+				document.body.appendChild(downloadLink);
+				if(navigator.msSaveOrOpenBlob){
+					var blob = new Blob(['\ufeff', tableHTML], {
+						type: dataType
+					});
+					navigator.msSaveOrOpenBlob( blob, filename);
+				}else{
+					// Create a link to the file
+					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+				
+					// Setting the file name
+					downloadLink.download = filename;
+					
+					//triggering the function
+					downloadLink.click();
+				}
+			})
+</script>

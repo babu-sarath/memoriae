@@ -1,4 +1,6 @@
 const moment = require('moment')
+const Users = require('../models/Users')
+
 
 module.exports = {
 	formatDate: function (date, format) {
@@ -40,6 +42,15 @@ module.exports = {
 				'selected="selected"$&'
 			)
 	},
+	
+	fetchdetail : function (userId) {
+		Users.find({_id:userId}).then ((error,data)=>{
+			if (error)
+				console.log(error)
+			else
+				console.log(data.displayName)
+		})
+	}, 
 
 	if_eq: function (a, b, options) {
 		if (a == b) {

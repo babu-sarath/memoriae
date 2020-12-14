@@ -7,8 +7,11 @@ const PaymentScheme = new mongoose.Schema({
 		index: true,
 	},
 	donateTo: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
+		type: String,
+	
+	},
+	donateToName: {
+		type: String,
 	},
 	donationFrom: {
 		type: mongoose.Schema.Types.ObjectId,
