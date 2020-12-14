@@ -246,11 +246,11 @@ router.post('/checkout', async (req, res) => {
 		razorpay_payment_id,
 	} = req.body
 
-	let paymentobject= await Users.findOne({_id:to}).lean()
+	let paymentobject = await Users.findOne({ _id: to }).lean()
 	console.log(paymentobject)
-	let donateToName=paymentobject.displayName
+	let donateToName = paymentobject.displayName
 	let uid = req.user.id
-	let serviceCharge = ((amount/100)*15) / 100
+	let serviceCharge = ((amount / 100) * 15) / 100
 	const newRecord = new Payment({
 		paymentId: razorpay_payment_id,
 		donateTo: to,
@@ -264,7 +264,7 @@ router.post('/checkout', async (req, res) => {
 		.save()
 		.then((stat) => {
 			console.log(stat)
-			res.redirect('/stories/')
+			res.redirect('/dashboard')
 		})
 		.catch((err) => {
 			console.log(err)

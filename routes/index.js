@@ -90,10 +90,10 @@ router.get('/admindash', ensureAuth, async (req, res) => {
 			}
 		})
 		let mostReportedDoc = await Story.find().sort({ reports: -1 }).limit(1)
-		mostReported = mostReportedDoc[0]._id
+		if (mostReportedDoc.length > 0) mostReported = mostReportedDoc[0]._id
 
 		let mostLikedDoc = await Story.find().sort({ likes: -1 }).limit(1)
-		mostLiked = mostLikedDoc[0]._id
+		if (mostLikedDoc.length > 0) mostLiked = mostLikedDoc[0]._id
 
 		res.render('admindash', {
 			layout: 'admin',
