@@ -80,11 +80,11 @@
             <strong>No users</strong>
             {{/if}}
         </table>
-        <a id="user-report"class="btn btn-warning">Generate Report</a>
+        <a id="user-report" class="btn btn-warning">Generate Report</a>
     </div>
 </div>
 
-<div class="row my-4">
+<div class="row my-4 pt-5">
     <div class="col">
         <h5 class="text-muted">All the Payments</h5>
         {{#if payment }}
@@ -111,102 +111,102 @@
             <strong>No stories posted</strong>
             {{/if}}
         </table>
-        <a id="payment-report"class="btn btn-warning">Generate Report</a>
+        <a id="payment-report" class="btn btn-warning">Generate Report</a>
     </div>
 </div>
 <script>
-    $('#story-report').click((e)=>{
-				let filename=''
-				let downloadLink;
-				let dataType = 'application/vnd.ms-excel';
-				let tableSelect = document.getElementById('admin-story-table');
-				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    $('#story-report').click((e) => {
+        let filename = ''
+        let downloadLink;
+        let dataType = 'application/vnd.ms-excel';
+        let tableSelect = document.getElementById('admin-story-table');
+        let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-				// Specify file name
-				filename = filename?filename+'.xls':'story_data.xls';
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'story_data.xls';
 
-				// Create download link element
-				downloadLink = document.createElement("a");
+        // Create download link element
+        downloadLink = document.createElement("a");
 
-				document.body.appendChild(downloadLink);
-				if(navigator.msSaveOrOpenBlob){
-					var blob = new Blob(['\ufeff', tableHTML], {
-						type: dataType
-					});
-					navigator.msSaveOrOpenBlob( blob, filename);
-				}else{
-					// Create a link to the file
-					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-				
-					// Setting the file name
-					downloadLink.download = filename;
-					
-					//triggering the function
-					downloadLink.click();
-				}
-			})
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    })
 </script>
 <script>
-    $('#user-report').click((e)=>{
-				let filename=''
-				let downloadLink;
-				let dataType = 'application/vnd.ms-excel';
-				let tableSelect = document.getElementById('admin-users-table');
-				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    $('#user-report').click((e) => {
+        let filename = ''
+        let downloadLink;
+        let dataType = 'application/vnd.ms-excel';
+        let tableSelect = document.getElementById('admin-users-table');
+        let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-				// Specify file name
-				filename = filename?filename+'.xls':'user_data.xls';
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'user_data.xls';
 
-				// Create download link element
-				downloadLink = document.createElement("a");
+        // Create download link element
+        downloadLink = document.createElement("a");
 
-				document.body.appendChild(downloadLink);
-				if(navigator.msSaveOrOpenBlob){
-					var blob = new Blob(['\ufeff', tableHTML], {
-						type: dataType
-					});
-					navigator.msSaveOrOpenBlob( blob, filename);
-				}else{
-					// Create a link to the file
-					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-				
-					// Setting the file name
-					downloadLink.download = filename;
-					
-					//triggering the function
-					downloadLink.click();
-				}
-			})
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    })
 </script>
 <script>
-    $('#payment-report').click((e)=>{
-				let filename=''
-				let downloadLink;
-				let dataType = 'application/vnd.ms-excel';
-				let tableSelect = document.getElementById('admin-payment-table');
-				let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    $('#payment-report').click((e) => {
+        let filename = ''
+        let downloadLink;
+        let dataType = 'application/vnd.ms-excel';
+        let tableSelect = document.getElementById('admin-payment-table');
+        let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-				// Specify file name
-				filename = filename?filename+'.xls':'payment_data.xls';
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'payment_data.xls';
 
-				// Create download link element
-				downloadLink = document.createElement("a");
+        // Create download link element
+        downloadLink = document.createElement("a");
 
-				document.body.appendChild(downloadLink);
-				if(navigator.msSaveOrOpenBlob){
-					var blob = new Blob(['\ufeff', tableHTML], {
-						type: dataType
-					});
-					navigator.msSaveOrOpenBlob( blob, filename);
-				}else{
-					// Create a link to the file
-					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-				
-					// Setting the file name
-					downloadLink.download = filename;
-					
-					//triggering the function
-					downloadLink.click();
-				}
-			})
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    })
 </script>

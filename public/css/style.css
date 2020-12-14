@@ -45,7 +45,8 @@ body {
 }
 
 .header {
-	background-color: #ffffff;
+	/* background-color: #ffffff; */
+	background-image: linear-gradient(to bottom right, #e09af1, #84dde6);
 	border-bottom: 5px solid #343a40;
 }
 

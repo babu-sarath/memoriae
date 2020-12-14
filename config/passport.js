@@ -23,7 +23,7 @@ module.exports = function (passport) {
 					ban: ban,
 				}
 				try {
-					let user = await User.findOne({ googleId: profile.id })
+					let user = await User.findOne({ userId: profile.id })
 					if (user) {
 						done(null, user)
 					} else {

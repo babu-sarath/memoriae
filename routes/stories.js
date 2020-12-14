@@ -7,6 +7,7 @@ const Story = require('../models/Story')
 const Users = require('../models/Users')
 const News = require('../models/News')
 const Payment = require('../models/Payments')
+
 let instance = new Razorpay({
 	key_id: 'rzp_test_3OvTq6T7Wrlbki',
 	key_secret: 'NsB6Ol6Kk6w9M6GyD4NYXGDD',
