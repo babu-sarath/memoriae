@@ -24,7 +24,8 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "razorpay": "^2.0.6"
+    "razorpay": "^2.0.6",
+    "sendmail": "^1.6.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

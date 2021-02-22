@@ -34,6 +34,7 @@ body {
 	width: 100px;
 	border-radius: 50%;
 	border: 3px solid #ffc107;
+	margin-left: 10px;
 }
 
 .btn-login {
